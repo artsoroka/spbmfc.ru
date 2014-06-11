@@ -1,8 +1,15 @@
-var http = require('http');
-var fs = require('fs');
-var index = fs.readFileSync(__dirname + '/public/index.html');
+var express = require('express'),
+	app = express(), 
+	router = express.Router();
 
-http.createServer(function (req, res) {
-  res.writeHead(200, {'Content-Type': 'text/html'});
-  res.end(index);
-}).listen(8086);
+app.use(express.static(__dirname + '/public'));
+
+app.set('views', __dirname + '/views');
+app.engine('html', require('ejs').renderFile);
+
+app.get('/', function (req, res)
+{
+    res.render('index.html');
+});
+
+app.listen(8086);
