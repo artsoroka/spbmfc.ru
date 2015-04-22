@@ -1,15 +1,13 @@
-var express = require('express'),
-	app = express(), 
-	router = express.Router();
+var express = require('express'); 
+var app = express();  
 
 app.use(express.static(__dirname + '/public'));
 
 app.set('views', __dirname + '/views');
 app.engine('html', require('ejs').renderFile);
 
-app.get('/', function (req, res)
-{
+app.get('/', function (req, res){
     res.render('index.html');
 });
 
-app.listen(8086);
+module.exports = app; 
